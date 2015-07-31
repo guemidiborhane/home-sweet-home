@@ -138,7 +138,7 @@ class Homestead
 
     # Update Composer On Every Provision
     config.vm.provision "shell" do |s|
-      s.inline = "/usr/local/bin/composer self-update && /usr/local/bin/composer g update"
+      s.inline = "/usr/local/bin/composer self-update"
     end
 
     # Configure Blackfire.io

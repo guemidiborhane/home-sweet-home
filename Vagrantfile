@@ -1,9 +1,21 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
+require 'yaml'
 
-Vagrant.configure("2") do |config|
-    config.vm.box = "guemidiborhane/home-sweet-home"
-    config.vm.network "private_network", ip: "192.168.33.10"
-    config.vm.hostname = "home-sweet-home"
-    config.vm.synced_folder "~/Code", "/var/www", :mount_options => ["dmode=777","fmode=666"]
+VAGRANTFILE_API_VERSION = "2"
+
+homesteadYamlPath = "./Homestead.yaml"
+afterScriptPath = "./after.sh"
+aliasesPath = "./aliases"
+
+require File.expand_path(File.dirname(__FILE__) + '/scripts/homestead.rb')
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+	if File.exists? aliasesPath then
+		config.vm.provision "file", source: aliasesPath, destination: "~/.bash_aliases"
+	end
+
+	Homestead.configure(config, YAML::load(File.read(homesteadYamlPath)))
+
+	if File.exists? afterScriptPath then
+		config.vm.provision "shell", path: afterScriptPath
+	end
 end

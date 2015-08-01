@@ -2,7 +2,7 @@ require 'yaml'
 
 VAGRANTFILE_API_VERSION = "2"
 
-homesteadYamlPath = "./Homestead.yaml"
+homesteadYamlPath = "./SweetHome.yaml"
 afterScriptPath = "./after.sh"
 aliasesPath = "./aliases"
 

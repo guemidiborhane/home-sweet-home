@@ -1,4 +1,4 @@
-<?php namespace Laravel\Sweethome;
+<?php namespace Sweethome;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Command\Command;

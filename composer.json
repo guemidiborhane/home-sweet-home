@@ -1,6 +1,6 @@
 {
-    "name": "laravel/homestead",
-    "description": "A virtual machine for web artisans.",
+    "name": "guemidiborhane/sweethome",
+    "description": "A virtual machine for web artisans based on homestead.",
     "require": {
         "php": ">=5.4",
         "symfony/console": "~2.0",
@@ -9,16 +9,16 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Taylor Otwell",
-            "email": "taylorotwell@gmail.com"
+            "name": "Borhane Eddine Guemidi",
+            "email": "guemidiborhane@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Laravel\\Sweethome\\": "src/"
+            "Sweethome\\": "src/"
         }
     },
     "bin": [
-        "homestead"
+        "sweethome"
     ]
 }

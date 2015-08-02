@@ -19,20 +19,20 @@ function homestead_path()
     }
 }
 
-$app = new Symfony\Component\Console\Application('Sweet Home', '0.1.2');
+$app = new Symfony\Component\Console\Application('Sweet Home', '0.1.3');
 
-$app->add(new Laravel\Sweethome\DestroyCommand);
-$app->add(new Laravel\Sweethome\EditCommand);
-$app->add(new Laravel\Sweethome\HaltCommand);
-$app->add(new Laravel\Sweethome\InitCommand);
-$app->add(new Laravel\Sweethome\ProvisionCommand);
-$app->add(new Laravel\Sweethome\ResumeCommand);
-$app->add(new Laravel\Sweethome\RunCommand);
-$app->add(new Laravel\Sweethome\UpCommand);
-$app->add(new Laravel\Sweethome\UpdateCommand);
-$app->add(new Laravel\Sweethome\SshCommand);
-$app->add(new Laravel\Sweethome\SshConfigCommand);
-$app->add(new Laravel\Sweethome\StatusCommand);
-$app->add(new Laravel\Sweethome\SuspendCommand);
+$app->add(new Sweethome\DestroyCommand);
+$app->add(new Sweethome\EditCommand);
+$app->add(new Sweethome\HaltCommand);
+$app->add(new Sweethome\InitCommand);
+$app->add(new Sweethome\ProvisionCommand);
+$app->add(new Sweethome\ResumeCommand);
+$app->add(new Sweethome\RunCommand);
+$app->add(new Sweethome\UpCommand);
+$app->add(new Sweethome\UpdateCommand);
+$app->add(new Sweethome\SshCommand);
+$app->add(new Sweethome\SshConfigCommand);
+$app->add(new Sweethome\StatusCommand);
+$app->add(new Sweethome\SuspendCommand);
 
 $app->run();

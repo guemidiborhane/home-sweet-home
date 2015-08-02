@@ -137,11 +137,13 @@ class Sweethome
     end
 
     # Update Composer On Every Provision
-    if !settings.has_key?("keep_composer")
-      config.vm.provision "shell" do |s|
-        s.inline = "/usr/local/bin/composer self-update"
+    if settings.has_key? 'update_composer_on_provision'
+      if !settings['update_composer_on_provision']
+        config.vm.provision "shell" do |s|
+          s.inline = "/usr/local/bin/composer self-update"
+        end
       end
     end
-    
+
   end
 end

@@ -3,9 +3,11 @@ ip: "192.168.56.101"
 memory: 512
 cpus: 1
 provider: virtualbox
+name: sweet-home
+
+update_composer_on_provision: true
 
 authorize: ~/.ssh/id_rsa.pub
-
 keys:
     - ~/.ssh/id_rsa
 
@@ -16,7 +18,8 @@ folders:
 sites:
 	- map: local.dev
 	  to: /home/vagrant/Code
-    - map: sweet-home.dev
+
+  - map: sweet-home.dev
       to: /home/vagrant/Code/Laravel/public
 
 databases:

@@ -3,7 +3,7 @@ require 'yaml'
 VAGRANTFILE_API_VERSION = "2"
 confDir = $confDir ||= File.expand_path("~/.sweet-home")
 
-homesteadYamlPath = confDir + "/Sweethome.yaml"
+sweethomeYamlPath = confDir + "/Sweethome.yaml"
 afterScriptPath = confDir + "/after.sh"
 aliasesPath = confDir + "/aliases"
 
@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		config.vm.provision "file", source: aliasesPath, destination: "~/.bash_aliases"
 	end
 
-	Sweethome.configure(config, YAML::load(File.read(homesteadYamlPath)))
+	Sweethome.configure(config, YAML::load(File.read(sweethomeYamlPath)))
 
 	if File.exists? afterScriptPath then
 		config.vm.provision "shell", path: afterScriptPath

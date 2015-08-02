@@ -1,5 +1,5 @@
-class Homestead
-  def Homestead.configure(config, settings)
+class Sweethome
+  def Sweethome.configure(config, settings)
     # Set The VM Provider
     ENV['VAGRANT_DEFAULT_PROVIDER'] = settings["provider"] ||= "virtualbox"
 
@@ -126,7 +126,7 @@ class Homestead
         end
 
         config.vm.provision "shell" do |s|
-            s.inline = "echo \"\n# Set Homestead Environment Variable\nexport $1=$2\" >> /home/vagrant/.profile"
+            s.inline = "echo \"\n# Set Sweethome Environment Variable\nexport $1=$2\" >> /home/vagrant/.profile"
             s.args = [var["key"], var["value"]]
         end
       end
@@ -138,7 +138,10 @@ class Homestead
 
     # Update Composer On Every Provision
     config.vm.provision "shell" do |s|
-      s.inline = "/usr/local/bin/composer self-update"
+      if settings.has_key?("keep_composer")
+        s.inline = "/usr/local/bin/composer self-update"
+      end
     end
+    
   end
 end

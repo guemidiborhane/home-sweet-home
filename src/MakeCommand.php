@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Homestead;
+namespace Laravel\Sweethome;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Command\Command;
@@ -45,7 +45,7 @@ class MakeCommand extends Command
 
         $this
             ->setName('make')
-            ->setDescription('Install Homestead into the current project')
+            ->setDescription('Install Sweethome into the current project')
             ->addOption('name', null, InputOption::VALUE_OPTIONAL, 'The name the virtual machine.', $this->defaultName)
             ->addOption('hostname', null, InputOption::VALUE_OPTIONAL, 'The hostname the virtual machine.', $this->defaultName)
             ->addOption('after', null, InputOption::VALUE_NONE, 'Determines if the after.sh file is created.')
@@ -63,8 +63,8 @@ class MakeCommand extends Command
     {
         copy(__DIR__.'/stubs/LocalizedVagrantfile', $this->basePath.'/Vagrantfile');
 
-        if (!file_exists($this->basePath.'/Homestead.yaml')) {
-            copy( __DIR__ . '/stubs/Homestead.yaml', $this->basePath . '/Homestead.yaml' );
+        if (!file_exists($this->basePath.'/Sweethome.yaml')) {
+            copy( __DIR__ . '/stubs/Sweethome.yaml', $this->basePath . '/Sweethome.yaml' );
         }
 
         if ($input->getOption('after')) {
@@ -89,16 +89,16 @@ class MakeCommand extends Command
 
         $this->configurePaths();
 
-        $output->writeln('Homestead Installed!');
+        $output->writeln('Sweethome Installed!');
     }
 
     /**
-     * Update paths in Homestead.yaml
+     * Update paths in Sweethome.yaml
      */
     protected function configurePaths()
     {
         $yaml = str_replace(
-            "- map: ~/Code", "- map: \"".str_replace('\\', '/', $this->basePath)."\"", $this->getHomesteadFile()
+            "- map: ~/Code", "- map: \"".str_replace('\\', '/', $this->basePath)."\"", $this->getSweethomeFile()
         );
 
         $yaml = str_replace(
@@ -110,11 +110,11 @@ class MakeCommand extends Command
             $this->defaultName."\"/Laravel/public", $this->defaultName."/public\"", $yaml
         );
 
-        file_put_contents($this->basePath.'/Homestead.yaml', $yaml);
+        file_put_contents($this->basePath.'/Sweethome.yaml', $yaml);
     }
 
     /**
-     * Update the "name" variable of the Homestead.yaml file.
+     * Update the "name" variable of the Sweethome.yaml file.
      *
      * VirtualBox requires a unique name for each virtual machine.
      *
@@ -123,31 +123,31 @@ class MakeCommand extends Command
      */
     protected function updateName($name)
     {
-        file_put_contents($this->basePath.'/Homestead.yaml', str_replace(
-            "cpus: 1", "cpus: 1".PHP_EOL."name: ".$name, $this->getHomesteadFile()
+        file_put_contents($this->basePath.'/Sweethome.yaml', str_replace(
+            "cpus: 1", "cpus: 1".PHP_EOL."name: ".$name, $this->getSweethomeFile()
         ));
     }
 
     /**
-     * Set the virtual machine's hostname setting in the Homestead.yaml file.
+     * Set the virtual machine's hostname setting in the Sweethome.yaml file.
      *
      * @param  string  $hostname
      * @return void
      */
     protected function updateHostName($hostname)
     {
-        file_put_contents($this->basePath.'/Homestead.yaml', str_replace(
-            "cpus: 1", "cpus: 1".PHP_EOL."hostname: ".$hostname, $this->getHomesteadFile()
+        file_put_contents($this->basePath.'/Sweethome.yaml', str_replace(
+            "cpus: 1", "cpus: 1".PHP_EOL."hostname: ".$hostname, $this->getSweethomeFile()
         ));
     }
 
     /**
-     * Get the contents of the Homestead.yaml file.
+     * Get the contents of the Sweethome.yaml file.
      *
      * @return string
      */
-    protected function getHomesteadFile()
+    protected function getSweethomeFile()
     {
-        return file_get_contents($this->basePath.'/Homestead.yaml');
+        return file_get_contents($this->basePath.'/Sweethome.yaml');
     }
 }

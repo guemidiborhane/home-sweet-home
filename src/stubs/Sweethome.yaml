@@ -14,6 +14,8 @@ folders:
       to: /home/vagrant/Code
 
 sites:
+	- map: local.dev
+	  to: /home/vagrant/Code
     - map: sweet-home.dev
       to: /home/vagrant/Code/Laravel/public
 

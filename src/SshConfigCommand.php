@@ -1,4 +1,4 @@
-<?php namespace Laravel\Homestead;
+<?php namespace Laravel\Sweethome;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Command\Command;
@@ -15,7 +15,7 @@ class SshConfigCommand extends Command
     protected function configure()
     {
         $this->setName('ssh-config')
-                  ->setDescription('Outputs OpenSSH valid configuration to connect to Homestead');
+                  ->setDescription('Outputs OpenSSH valid configuration to connect to Sweethome');
     }
 
     /**

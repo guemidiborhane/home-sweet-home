@@ -10,7 +10,7 @@ block="server {
     server_name $1;
     root \"$2\";
 
-    index index.html index.htm index.php;
+    index index.html index.htm index.php /_h5ai/server/php/index.php;
 
     charset utf-8;
 
@@ -48,7 +48,7 @@ server {
     server_name $1;
     root \"$2\";
 
-    index index.html index.htm index.php;
+    index index.html index.htm index.php /_h5ai/server/php/index.php;
 
     charset utf-8;
 

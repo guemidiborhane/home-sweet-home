@@ -1,10 +1,11 @@
 require 'yaml'
 
 VAGRANTFILE_API_VERSION = "2"
+confDir = $confDir ||= File.expand_path("~/.sweet-home")
 
-homesteadYamlPath = "./SweetHome.yaml"
-afterScriptPath = "./after.sh"
-aliasesPath = "./aliases"
+homesteadYamlPath = confDir + "/Homestead.yaml"
+afterScriptPath = confDir + "/after.sh"
+aliasesPath = confDir + "/aliases"
 
 require File.expand_path(File.dirname(__FILE__) + '/scripts/homestead.rb')
 

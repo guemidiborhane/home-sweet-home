@@ -34,5 +34,6 @@ $app->add(new Sweethome\SshCommand);
 $app->add(new Sweethome\SshConfigCommand);
 $app->add(new Sweethome\StatusCommand);
 $app->add(new Sweethome\SuspendCommand);
+$app->add(new Sweethome\ReloadCommand);
 
 $app->run();

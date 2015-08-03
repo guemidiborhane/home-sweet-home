@@ -19,7 +19,7 @@ function homestead_path()
     }
 }
 
-$app = new Symfony\Component\Console\Application('Sweet Home', '0.1.3');
+$app = new Symfony\Component\Console\Application('Sweet Home', '0.1.4');
 
 $app->add(new Sweethome\DestroyCommand);
 $app->add(new Sweethome\EditCommand);

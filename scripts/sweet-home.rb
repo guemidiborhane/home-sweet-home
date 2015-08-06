@@ -39,9 +39,9 @@ class Sweethome
 
     # Default Port Forwarding
     default_ports = {
-      80   => 8000,
-      443  => 44300,
-      3306 => 33060
+        80 => 8000,
+        443 => 44300,
+        3306 => 33060
     }
 
     # Use Default Port Forwarding Unless Overridden
@@ -83,7 +83,7 @@ class Sweethome
         mount_opts = []
 
         if (folder["type"] == "nfs")
-            mount_opts = folder["mount_opts"] ? folder["mount_opts"] : ['actimeo=1']
+          mount_opts = folder["mount_opts"] ? folder["mount_opts"] : ['actimeo=1']
         end
 
         config.vm.synced_folder folder["map"], folder["to"], type: folder["type"] ||= nil, mount_options: mount_opts
@@ -92,7 +92,7 @@ class Sweethome
 
     # Install All The Configured Nginx Sites
     config.vm.provision "shell" do |s|
-        s.path = scriptDir + "/clear-nginx.sh"
+      s.path = scriptDir + "/clear-nginx.sh"
     end
 
 
@@ -105,17 +105,17 @@ class Sweethome
 
     # Configure All Of The Configured Databases
     if settings.has_key?("databases")
-        settings["databases"].each do |db|
-          config.vm.provision "shell" do |s|
-            s.path = scriptDir + "/create-mysql.sh"
-            s.args = [db]
-          end
+      settings["databases"].each do |db|
+        config.vm.provision "shell" do |s|
+          s.path = scriptDir + "/create-mysql.sh"
+          s.args = [db]
         end
+      end
     end
 
     # Configure All Of The Server Environment Variables
     config.vm.provision "shell" do |s|
-        s.path = scriptDir + "/clear-variables.sh"
+      s.path = scriptDir + "/clear-variables.sh"
     end
 
     if settings.has_key?("variables")
@@ -126,8 +126,8 @@ class Sweethome
         end
 
         config.vm.provision "shell" do |s|
-            s.inline = "echo \"\n# Set Sweethome Environment Variable\nexport $1=$2\" >> /home/vagrant/.profile"
-            s.args = [var["key"], var["value"]]
+          s.inline = "echo \"\n# Set Sweethome Environment Variable\nexport $1=$2\" >> /home/vagrant/.profile"
+          s.args = [var["key"], var["value"]]
         end
       end
 
@@ -141,6 +141,7 @@ class Sweethome
       if !settings['update_composer_on_provision']
         config.vm.provision "shell" do |s|
           s.inline = "/usr/local/bin/composer self-update"
+          s.inline = "su vagrant `/usr/local/bin/composer update --no-progress -d /home/vagrant/.composer`"
         end
       end
     end
